@@ -3,9 +3,15 @@ import { defineConfig, devices } from '@playwright/test';
 import { CoverageReportOptions } from 'monocart-reporter';
 
 const coverageReportOptions: CoverageReportOptions = {
-    // logging: 'debug',
+    logging: 'debug',
     name: 'Next.js Istanbul Coverage Report',
 
+    all: {
+        dir: ['./src'],
+        filter: {
+            '**/*.tsx': true
+        }
+    },
     entryFilter: (entry) => {
         // both client side and server side
         return entry.url.includes('next/static/chunks') || entry.url.includes('next/server/app');
